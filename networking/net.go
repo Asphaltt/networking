@@ -28,17 +28,19 @@ func GetFirstIPv4(ip, mask string) string {
 	return Itoa(Atoi(ip)&Atoi(mask) + 1)
 }
 
-func isPowerOf2(i uint32) bool {
-	m := math.Log2(float64(i))
-	return m == float64(int(m))
-}
-
 func IsIPv4Netmask(mask string) bool {
 	if mask == "" {
 		return false
 	}
 	m := unicast ^ Atoi(mask)
-	return m == 0 || isPowerOf2(m+1)
+	for m > 0 {
+		if m&1 != 1 {
+		if m&1 != 1 {
+			return false
+		}
+		m >>= 1
+	}
+	return true
 }
 
 func GetIPv4NetmaskBits(mask string) int {
