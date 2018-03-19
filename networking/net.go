@@ -35,7 +35,6 @@ func IsIPv4Netmask(mask string) bool {
 	m := unicast ^ Atoi(mask)
 	for m > 0 {
 		if m&1 != 1 {
-		if m&1 != 1 {
 			return false
 		}
 		m >>= 1
